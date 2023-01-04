@@ -10,9 +10,9 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<MainLayout />}>
-        <Route index element={<Contact />} />
-        <Route path="about" element={<Questions />} />
-        <Route path="dashboard" element={<Ranking />} />
+        <Route path="contact" element={<Contact />} />
+        <Route path="questions" element={<Questions />} />
+        <Route path="ranking" element={<Ranking />} />
 
         {/* Using path="*"" means "match anything", so this route
             acts like a catch-all for URLs that we don't have explicit

@@ -1,28 +1,39 @@
-import { Routes, Route, Outlet, Link } from "react-router-dom";
+import { Outlet, Link } from "react-router-dom";
+import { Menu } from "antd";
+import { useState } from "react";
 
 const MainLayout = () => {
+  const [current, setCurrent] = useState("home");
+  const onClick = (e) => {
+    console.log("click ", e);
+    setCurrent(e.key);
+  };
+  const items = [
+    {
+      label: <Link to="/">Home</Link>,
+      key: "home",
+    },
+    {
+      label: <Link to="/contact">Contact</Link>,
+      key: "contact",
+    },
+    {
+      label: <Link to="/questions">Game</Link>,
+      key: "game",
+    },
+    {
+      label: <Link to="/ranking">Ranking</Link>,
+      key: "ranking",
+    },
+  ];
   return (
     <div>
-      {/* A "layout route" is a good place to put markup you want to
-        share across all the pages on your site, like navigation. */}
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/about">About</Link>
-          </li>
-          <li>
-            <Link to="/dashboard">Dashboard</Link>
-          </li>
-          <li>
-            <Link to="/nothing-here">Nothing Here</Link>
-          </li>
-        </ul>
-      </nav>
-
-      <hr />
+      <Menu
+        onClick={onClick}
+        selectedKeys={[current]}
+        mode="horizontal"
+        items={items}
+      />
 
       {/* An <Outlet> renders whatever child route is currently active,
         so you can think about this <Outlet> as a placeholder for
